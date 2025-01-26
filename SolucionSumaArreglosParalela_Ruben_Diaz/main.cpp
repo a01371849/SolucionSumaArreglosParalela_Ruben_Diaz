@@ -6,8 +6,8 @@
 
 using namespace std;
 
-#define N 55555		// Cantidad de elementos a manejar en los arreglos
-#define chunk 100	// Tamaño que tendrán los pedazos de los arreglos para que cada hilo creado se encargue de esta cantidad de elementos
+#define N 1000000000		// Cantidad de elementos a manejar en los arreglos
+#define chunk 1000000	// Tamaño que tendrán los pedazos de los arreglos para que cada hilo creado se encargue de esta cantidad de elementos
 #define mostrar 10	// Cantidad de datos a imprimir
 
 void imprimeArreglo(float* d);
@@ -24,7 +24,10 @@ int main()
 	std::cout << "N: " << N << std::endl;
 	std::cout << "chunk: " << chunk << std::endl;
 	std::cout << "mostrar: " << mostrar << "\n" << std::endl;
-	float a[N], b[N], c[N], c1[N];
+	float* a = new float[N];
+	float* b = new float[N];
+	float* c = new float[N];
+	float* c1 = new float[N];
 	int i;
 	// LLenado de manera aleatoria de los 2 arreglos a sumarse
 	for (i = 0; i < N; i++)
