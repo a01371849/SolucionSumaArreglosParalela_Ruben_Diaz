@@ -58,12 +58,12 @@ int main()
 	std::cout << "\nImprimiendo los primeros " << mostrar << " valores del arreglo c : " << std::endl;
 	imprimeArreglo(c);
 
-	// Calculate execution time in seconds
+	// Cálculo del tiempo de ejecución en segundos
 	double executionTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 	// Print the execution time
 	std::cout << "\nTiempo de ejecucion en paralelo: " << executionTime << " segundos" << std::endl;
 
-    // Calculo del tiempo de ejecución en segundos
+    // Cálculo del tiempo de ejecución en segundos
     double executionTime1 = static_cast<double>(end1 - start1) / CLOCKS_PER_SEC;
     // Print the execution time
     std::cout << "Tiempo de ejecucion en secuencial: " << executionTime1 << " segundos" << std::endl;
