@@ -10,7 +10,7 @@ using namespace std;
 #define chunk 100	// Tamaño que tendrán los pedazos de los arreglos para que cada hilo creado se encargue de esta cantidad de elementos
 #define mostrar 10	// Cantidad de datos a imprimir
 
-void imprimeArreglo(float *d);
+void imprimeArreglo(float* d);
 void checkOpenMP();
 
 int main()
@@ -35,21 +35,21 @@ int main()
 
 	int pedazos = chunk;
 	// timer para medir el tiempo que tarda en ejecutarse el código en paralelo
-    clock_t start = clock();
+	clock_t start = clock();
 	// inicio del bloque de for parelelo
-	#pragma omp parallel for shared(a, b, c, pedazos) private(i) schedule(static, pedazos)
-    for (i = 0; i < N; i++)
-        c[i] = a[i] + b[i];
+#pragma omp parallel for shared(a, b, c, pedazos) private(i) schedule(static, pedazos)
+	for (i = 0; i < N; i++)
+		c[i] = a[i] + b[i];
 	clock_t end = clock();
-    //std::cout << "start: " << start << " - end " << end << std::endl;
+	//std::cout << "start: " << start << " - end " << end << std::endl;
 
 	// timer para medir el tiempo que tarda en ejecutarse el código en secuencial
-    clock_t start1 = clock();
-    int j = 0;
-    for (j = 0; j < N; j++)
-        c1[j] = a[j] + b[j];
-    clock_t end1 = clock();
-    //std::cout << "start: " << start1 << " - end " << end1 << std::endl;
+	clock_t start1 = clock();
+	int j = 0;
+	for (j = 0; j < N; j++)
+		c1[j] = a[j] + b[j];
+	clock_t end1 = clock();
+	//std::cout << "start: " << start1 << " - end " << end1 << std::endl;
 
 	std::cout << "Imprimiendo los primeros " << mostrar << " valores del arreglo a: " << std::endl;
 	imprimeArreglo(a);
@@ -63,17 +63,17 @@ int main()
 	// Print the execution time
 	std::cout << "\nTiempo de ejecucion en paralelo: " << executionTime << " segundos" << std::endl;
 
-    // Cálculo del tiempo de ejecución en segundos
-    double executionTime1 = static_cast<double>(end1 - start1) / CLOCKS_PER_SEC;
-    // Print the execution time
-    std::cout << "Tiempo de ejecucion en secuencial: " << executionTime1 << " segundos" << std::endl;
+	// Cálculo del tiempo de ejecución en segundos
+	double executionTime1 = static_cast<double>(end1 - start1) / CLOCKS_PER_SEC;
+	// Print the execution time
+	std::cout << "Tiempo de ejecucion en secuencial: " << executionTime1 << " segundos" << std::endl;
 }
 
 // Código de impresión de los arreglos para validar al final
 void imprimeArreglo(float* d) {
 	for (int x = 0; x < mostrar; x++) {
 		std::cout << d[x];
-		if (x<mostrar-1)
+		if (x < mostrar - 1)
 		{
 			std::cout << " - \t";
 		}
@@ -83,7 +83,7 @@ void imprimeArreglo(float* d) {
 // Código de verificación de que la librería OpenMP está disponible para su uso
 void checkOpenMP() {
 
-	# ifdef _OPENMP
-		std::cout << "OMP disponible y funcionando\n" << std::endl;
-	# endif
+# ifdef _OPENMP
+	std::cout << "OMP disponible y funcionando\n" << std::endl;
+# endif
 }
